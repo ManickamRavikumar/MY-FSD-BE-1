@@ -2,11 +2,9 @@ import Order from "../Models/Oders.js";
 import Cart from "../Models/Cart.js";
 import Food from "../Models/Foodlist.js";
 import { sendEmail } from "../Utils/mailer.js";
-import { sendSms } from "../Utils/smsService.js";
 import fs from "fs";
 import path from "path";
 import PDFDocument from "pdfkit";
-import { io } from "../index.js";
 import crypto from "crypto";
 
 // Place Order for user
@@ -156,7 +154,6 @@ export const updateOrderStatus = async (req, res) => {
 
     if (!updatedOrder)
       return res.status(404).json({ message: "Order Not Found" });
-    io.emit("orderUpdated", { type: "STATUS_UPDATE", order: updatedOrder });
     res.status(200).json({ message: "Order Status Updated", data: updatedOrder });
   } catch (error) {
     res.status(500).json({ message: error.message });
