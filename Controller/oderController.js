@@ -83,7 +83,6 @@ export const placeOrder = async (req, res) => {
     doc.text(`Order ID: ${order._id}`);
     doc.text(`Customer: ${req.user.name}`);
     doc.text(`Address: ${address}`);
-    doc.text(`Payment Method: ${paymentMethod}`);
     doc.moveDown();
 
     cart.items.forEach((item) => {
@@ -101,14 +100,6 @@ export const placeOrder = async (req, res) => {
     } catch (error) {
       console.log("email sending failed");
     }
-
-    // Send OTP via SMS
-    // try {
-    //   await sendSms(mobile, `Your delivery OTP is ${otp}`);
-    // } catch (error) {
-    //   console.log("SMS sending failed:", error.message);
-    // }
-
 
     res.status(200).json({ message: "order placed successfully", order })
   } catch (error) {
