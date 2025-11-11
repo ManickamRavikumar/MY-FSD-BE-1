@@ -82,7 +82,6 @@ export const placeOrder = async (req, res) => {
     doc.fontSize(20).text("Food Order Invoice", { align: "center" });
     doc.text(`Order ID: ${order._id}`);
     doc.text(`Customer: ${req.user.name}`);
-    doc.text(`Mobile: ${mobile}`);
     doc.text(`Address: ${address}`);
     doc.text(`Payment Method: ${paymentMethod}`);
     doc.moveDown();
@@ -104,11 +103,11 @@ export const placeOrder = async (req, res) => {
     }
 
     // Send OTP via SMS
-    try {
-      await sendSms(mobile, `Your delivery OTP is ${otp}`);
-    } catch (error) {
-      console.log("SMS sending failed:", error.message);
-    }
+    // try {
+    //   await sendSms(mobile, `Your delivery OTP is ${otp}`);
+    // } catch (error) {
+    //   console.log("SMS sending failed:", error.message);
+    // }
 
 
     res.status(200).json({ message: "order placed successfully", order })
