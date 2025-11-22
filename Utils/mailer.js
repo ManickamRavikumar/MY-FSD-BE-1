@@ -10,7 +10,7 @@ export const sendEmail = async (to, subject, text, html, attachmentPath) => {
         subject,
         html: html || `<p>${text}</p>`,
         attachments: attachmentPath
-          ? [{ path: attachmentPath }]
+          ? [{filename: "invoice.pdf", path: attachmentPath }]
           : undefined,
       });
       console.log("✅ Email sent successfully via Resend");
